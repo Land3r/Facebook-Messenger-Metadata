@@ -1,0 +1,31 @@
+/* Theme */
+
+$primary-color: #274C77;
+$secondary-color: #6096BA;
+$tertiary-color: #A3CEF1;
+
+$primary-font-color: #E7ECEF;
+$secondary-font-color: #8B8C89;
+
+$font-stack: 'Archivo';
+
+/* Template */
+
+$content-background-color: $primary-font-color;
+$content-font-color: $primary-color;
+
+$header-height: 10vh;
+$header-background-color: $primary-color;
+$header-font-color: $primary-font-color;
+
+$footer-height: 50px;
+$footer-background-color: $primary-color;
+$footer-font-color: $primary-font-color;
+
+$nav-width: 20vw;
+$nav-background-color: $secondary-color;
+$nav-font-color: $primary-font-color;
+
+$aside-width: 20vw;
+$aside-background-color: $secondary-color;
+$aside-font-color: $primary-font-color;
