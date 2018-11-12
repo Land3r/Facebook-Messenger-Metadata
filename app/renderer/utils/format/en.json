@@ -1,0 +1,17 @@
+{
+    "filename": "message.json",
+
+    "participants": "participants",
+    "participants__name": "name",
+
+    "messages": "messages",
+    "messages__sender_name": "sender_name",
+    "messages__timestamp_ms": "timestamp_ms",
+    "messages__content": "content",
+    "messages__type": "type",
+    
+    "title": "title",
+    "is_still_participant": "is_still_participant",
+    "thread_type": "thread_type",
+    "thread_path": "thread_path"
+}

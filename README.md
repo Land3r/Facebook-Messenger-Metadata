@@ -1,44 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# electron-react-redux-boilerplate
+[![Build Status](https://api.travis-ci.org/jschr/electron-react-redux-boilerplate.svg)](https://travis-ci.org/jschr/electron-react-redux-boilerplate)
+[![dependencies Status](https://david-dm.org/jschr/electron-react-redux-boilerplate/status.svg)](https://david-dm.org/jschr/electron-react-redux-boilerplate)
+[![devDependencies Status](https://david-dm.org/jschr/electron-react-redux-boilerplate/dev-status.svg)](https://david-dm.org/jschr/electron-react-redux-boilerplate?type=dev)
 
-## Available Scripts
+A minimal boilerplate to get started with [Electron](http://electron.atom.io/), [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/).
 
-In the project directory, you can run:
+Including:
 
-### `npm start`
+* [React Router](https://reacttraining.com/react-router/)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk/)
+* [Redux Actions](https://github.com/acdlite/redux-actions/)
+* [Redux Local Storage](https://github.com/elgerlambert/redux-localstorage/)
+* [Electron Packager](https://github.com/electron-userland/electron-packager)
+* [Electron DevTools Installer](https://github.com/MarshallOfSound/electron-devtools-installer)
+* [Electron Mocha](https://github.com/jprichardson/electron-mocha)
+* [Browsersync](https://browsersync.io/)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Quick start
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Clone the repository
+```bash
+git clone --depth=1 git@github.com:jschr/electron-react-redux-boilerplate.git
+```
 
-### `npm test`
+Install dependencies
+```bash
+cd electron-react-redux-boilerplate
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Development
+```bash
+npm run develop
+```
 
-### `npm run build`
+## DevTools
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Toggle DevTools:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+* OSX: <kbd>Cmd</kbd> <kbd>Alt</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+* Linux: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+* Windows: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Packaging
 
-### `npm run eject`
+Modify [electron-builder.yml](./electron-builder.yml) to edit package info.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For a full list of options see: https://github.com/electron-userland/electron-builder/wiki/Options.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a package for OSX, Windows and Linux
+```
+npm run pack
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Or target a specific platform
+```
+npm run pack:mac
+npm run pack:win
+npm run pack:linux
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Tests
 
-## Learn More
+```
+npm run test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Maintainers
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [@jschr](https://github.com/jschr)
+- [@pronebird](https://github.com/pronebird)
+
+## Apps using this boilerplate
+
+- [Mullvad VPN app](https://github.com/mullvad/mullvadvpn-app)
+- [YouTube Downloader Electron](https://github.com/vanzylv/youtube-downloader-electron)

@@ -1,0 +1,11 @@
+{
+  "search.exclude": {
+    "build/": true,
+    "dist/": true
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  }
+}

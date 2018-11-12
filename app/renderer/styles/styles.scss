@@ -1,0 +1,68 @@
+@import "variables";
+
+/* Generics */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: $font-stack;
+}
+
+/* Template */
+
+#main {
+    display: flex;
+    min-height: calc(100vh - #{$footer-height} - #{$header-height})
+}
+
+#main > #content {
+    flex: 1;
+}
+
+#main > nav {
+    flex: 0 0 $nav-width;
+}
+
+#main > nav {
+    order: -1;
+}
+
+header, footer, #content, nav {
+    padding: 1em;
+}
+
+header {
+    height: $header-height;
+    background: $header-background-color;
+    color: $header-font-color;
+}
+
+footer {
+    height: $footer-height;
+    background: $footer-background-color;
+    color: $footer-font-color;
+}
+
+#content {
+    background: $content-background-color;
+    color: $content-font-color;
+}
+
+nav {
+    background: $nav-background-color;
+    color: $nav-font-color;
+}
+
+/* Header */
+header > img {
+    max-width: 200px;
+    max-height: 7vh;
+    display: inline-block;
+}
+
+header > h1 {
+    display: inline-block;
+}
