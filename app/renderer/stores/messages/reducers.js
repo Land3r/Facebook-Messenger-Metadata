@@ -12,7 +12,7 @@ export default handleActions(
     },
     [actions.add]: (state, action) => {
         const messages = state.messages
-        console.log(action.payload)
+        console.log(JSON.stringify(action))
         messages.push(action.payload)
         return { ...state, messages: [...messages]}
     },

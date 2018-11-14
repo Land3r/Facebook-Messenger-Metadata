@@ -2,18 +2,20 @@ const { dialog } = require('electron').remote;
 const { lstatSync, readdirSync, existsSync, readFileSync } = require('fs')
 const { join } = require('path')
 const sentiment = require('multilang-sentiment');
+import {utf8decode, containsStdAscii} from './strings'
 const format = require('./format/en.json')
 
 class ElectronUtils {
   constructor() {
     this.messageFileName = format.filename
     this.contentJsonTag = format.messages__content
+    this.senderJsonTag = format.messages__sender_name
+    this.titleJsonTag = format.title
 
     this.openDirectory = this.openDirectory.bind(this)
     this.isDirectory = this.isDirectory.bind(this)
     this.getDirectories = this.getDirectories.bind(this)
     this.parseDirectory = this.parseDirectory.bind(this)
-
   }
 
   /**
@@ -48,13 +50,25 @@ class ElectronUtils {
    */
   parseDirectory(folder) {
     const filePath = join(folder, this.messageFileName)
-    if (existsSync(filePath)) {
-      let fileContent = readFileSync(filePath, 'utf8')
-      fileContent = fileContent.toString().replace(/\r?\n|\r/g, '')
-      const conversationMetadata = JSON.parse(fileContent, (key, value) => {
+    let fileContent = null
+    let conversationMetadata = null
+    // Read file content
+    try {
+      if (existsSync(filePath)) {
+        fileContent = readFileSync(filePath, 'utf8')
+        fileContent = fileContent.toString().replace(/\r?\n|\r/g, '')
+      }
+    }
+    catch(error) {
+      console.log(`An error occured while reading folder ${filePath} content: ${error}`)
+    }
+
+    // Interpret file content
+    try {
+      conversationMetadata = JSON.parse(fileContent, (key, value) => {
         // Special case to stringify the JSON content.
-        if (key == this.contentJsonTag) {
-          return JSON.stringify(value)
+        if (key == this.contentJsonTag || key == this.senderJsonTag || key == this.titleJsonTag) {
+          return utf8decode(value)
         }
         else {
           return value
@@ -62,8 +76,20 @@ class ElectronUtils {
       })
       if (conversationMetadata != null && conversationMetadata.messages != null && typeof(conversationMetadata.messages) === 'object' && conversationMetadata.messages.length >= 1) {
         const messagesResult = conversationMetadata.messages.map((message) => {
-          const metadata = sentiment(message.content, 'fr')
-          return { ...message, ...metadata}
+          if (message.content !== null && message.content !== '' && containsStdAscii(message.content)) {
+            try {
+              const metadata = sentiment(message.content, 'fr')
+              return { ...message, ...metadata}
+            }
+            catch (error) {
+              console.error(`An error occured while trying to get sentiment for ${message.content}`)
+              return { ...message }
+            }
+          }
+          else {
+            console.warn(`Message ${message.content} from ${conversationMetadata.title} cannot be parsed.`)
+            return {...message}
+          }
         })
         const result = {...conversationMetadata, messages: [...messagesResult]}
         return result
@@ -72,8 +98,8 @@ class ElectronUtils {
         console.log(`No messages found for ${folder}`)
       }
     }
-    else {
-      console.log(`File ${filePath} doesn't exists`)
+    catch (error) {
+      console.log(`An error occured while interpreting folder ${filePath} content: ${error}`)
     }
   }
 }

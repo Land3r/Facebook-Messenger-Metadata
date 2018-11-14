@@ -21,23 +21,6 @@ class OverviewPage extends Component {
             columnsDefinition: [
                 {
                   key: 'column1',
-                  name: 'Folder',
-                  headerClassName: 'DetailsListExample-header--FileIcon',
-                  className: 'DetailsListExample-cell--FileIcon',
-                  iconClassName: 'DetailsListExample-Header-FileTypeIcon',
-                  ariaLabel: 'Column operations for File type',
-                  iconName: 'Page',
-                  isIconOnly: true,
-                  fieldName: 'name',
-                  minWidth: 16,
-                  maxWidth: 16,
-                  onColumnClick: this._onColumnClick,
-                  onRender: (item) => {
-                    return <img src={item.iconName} className={'DetailsListExample-documentIconImage'} />;
-                  }
-                },
-                {
-                  key: 'column2',
                   name: 'Folder name',
                   fieldName: 'name',
                   minWidth: 210,
@@ -52,7 +35,7 @@ class OverviewPage extends Component {
                   isPadded: true
                 },
                 {
-                  key: 'column3',
+                  key: 'column2',
                   name: 'Created',
                   fieldName: 'created',
                   minWidth: 70,
@@ -65,7 +48,7 @@ class OverviewPage extends Component {
                   isPadded: true
                 },
                 {
-                  key: 'column4',
+                  key: 'column3',
                   name: 'Status',
                   fieldName: 'status',
                   minWidth: 70,
@@ -79,7 +62,7 @@ class OverviewPage extends Component {
                   isPadded: true
                 },
                 {
-                  key: 'column5',
+                  key: 'column4',
                   name: 'Conversations',
                   fieldName: 'elements',
                   minWidth: 70,
